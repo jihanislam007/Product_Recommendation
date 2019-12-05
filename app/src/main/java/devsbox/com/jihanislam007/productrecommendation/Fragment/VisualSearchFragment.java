@@ -1,14 +1,19 @@
 package devsbox.com.jihanislam007.productrecommendation.Fragment;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import devsbox.com.jihanislam007.productrecommendation.R;
@@ -23,6 +28,7 @@ public class VisualSearchFragment extends Fragment {
         // Required empty public constructor
     }
     LinearLayout productLL,barcodeLL,visualSearchLL,homeLL;
+    ImageView imageView;
 
 
 
@@ -37,6 +43,11 @@ public class VisualSearchFragment extends Fragment {
         barcodeLL = rootView.findViewById(R.id.barcodeLL);
         productLL = rootView.findViewById(R.id.productLL);
 
+        imageView = rootView.findViewById(R.id.imageView);
+
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,0);
 
         navButton();
 
@@ -110,4 +121,12 @@ public class VisualSearchFragment extends Fragment {
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+        imageView.setImageBitmap(bitmap);
+
+    }
 }

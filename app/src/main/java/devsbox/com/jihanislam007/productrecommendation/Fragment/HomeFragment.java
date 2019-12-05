@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import devsbox.com.jihanislam007.productrecommendation.Activity.MainActivity;
@@ -27,6 +28,8 @@ public class HomeFragment extends Fragment {
 
     LinearLayout productLL,barcodeLL,visualSearchLL,homeLL;
 
+    ImageView imageCamera;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +41,8 @@ public class HomeFragment extends Fragment {
         visualSearchLL = rootView.findViewById(R.id.visualSearchLL);
         barcodeLL = rootView.findViewById(R.id.barcodeLL);
         productLL = rootView.findViewById(R.id.productLL);
+
+        imageCamera = rootView.findViewById(R.id.imageCamera);
 
 
         navButton();
@@ -102,6 +107,22 @@ public class HomeFragment extends Fragment {
                 //   Toast.makeText(mcontext, "Image :"+String.valueOf(bundle), Toast.LENGTH_SHORT).show();
                 FragmentTransaction fragTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragTransaction.replace(R.id.nav_host_fragment,resultFragment );
+                fragTransaction.addToBackStack(null);
+                fragTransaction.commit();
+
+            }
+        });
+
+
+        imageCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                VisualSearchFragment visualSearchFragment = new VisualSearchFragment();
+                //recipeListFragment.setArguments(bundle);
+                //   Toast.makeText(mcontext, "Image :"+String.valueOf(bundle), Toast.LENGTH_SHORT).show();
+                FragmentTransaction fragTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragTransaction.replace(R.id.nav_host_fragment,visualSearchFragment );
                 fragTransaction.addToBackStack(null);
                 fragTransaction.commit();
 
