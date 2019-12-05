@@ -1,4 +1,4 @@
-package devsbox.com.jihanislam007.productrecommendation;
+package devsbox.com.jihanislam007.productrecommendation.Activity;
 
 import android.os.Bundle;
 
@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -21,6 +22,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
+import devsbox.com.jihanislam007.productrecommendation.Fragment.HomeFragment;
+import devsbox.com.jihanislam007.productrecommendation.R;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -31,14 +35,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+
+
+        /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
+
+
+        /*////////////////////for fragment load /////////////////////////////*/
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        HomeFragment dashBoardFragment = new HomeFragment();
+        fragmentManager.beginTransaction().add(R.id.nav_host_fragment,dashBoardFragment).commit();
+
+        /*////////////////////for fragment load /////////////////////////////*/
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
